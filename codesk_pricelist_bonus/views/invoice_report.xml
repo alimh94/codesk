@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[2]" position="after">
+                <th name="th_bonus_quantity" class="text-right"><span>Bonus Quantity</span></th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_taxes']" position="after">
+                <th name="th_bonus_quantity" class="text-right"><span>Tax Amount</span></th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_subtotal']" position="after">
+                <th name="th_bonus_quantity" class="text-right"><span>Total</span></th>
+        </xpath>
+        <xpath expr="//td[hasclass('text-right')]" position="after">
+                <td class="text-right">
+                    <span t-field="line.bonus_quantity"/>
+                    <span t-field="line.product_uom_id"  groups="uom.group_uom"/>
+                </td>
+        </xpath>
+        <xpath expr="//td[hasclass('o_price_total')]" position="before">
+                <td class="text-right o_price_total">
+                    <span class="text-nowrap" t-field="line.tax_amount_line"/>
+                </td>
+        </xpath>
+        <xpath expr="(//td[hasclass('o_price_total')])[2]" position="after">
+                <td class="text-right o_price_total">
+                    <span class="text-nowrap" t-field="line.price_total_line"/>
+                </td>
+        </xpath>
+    </template>
+</odoo>
