@@ -40,7 +40,6 @@
             <field name="arch" type="xml">
                 <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_uom_qty']" position="after">
                      <field name="bonus_quantity"/>
-                     <field name="is_bonus" attrs="{'column_invisible':[(1, '==', 1)]}"/>
                 </xpath>
             </field>
         </record>
