@@ -25,6 +25,15 @@ class ProductCategory(models.Model):
     bonus_quantity = fields.Float('Bonus Quantity', default=0)
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    order_line = fields.One2many('sale.order.line', 'order_id', string='Order Lines',
+                                 states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=True,
+                                 domain=[('is_bonus', '=', False)],
+                                 auto_join=True)
+
+
 class CustomSaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
